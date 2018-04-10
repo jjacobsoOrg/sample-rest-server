@@ -11,5 +11,22 @@ pipeline {
             sh 'mvn clean package'
          }
       }
+      stage('Masters Tests') {
+         when {
+            branch 'master'
+         }
+         steps {
+            echo "Run the master tests!"
+         }
+      }
+    stage('Development Tests') {
+         when {
+            beforeAgent true
+            branch 'development'
+         }
+         steps {
+            echo "Run the development tests!"
+         }
+      }
    }
 }
